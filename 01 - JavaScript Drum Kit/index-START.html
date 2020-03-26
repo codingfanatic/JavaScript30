@@ -58,7 +58,9 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  window.addEventListener('keydown', function (e){ //Listens for inputs from user. Specifically, keyDown events
+    console.log(e.keyCode); //Log the keyCode (ASCII) for each key entered into the console
+  });
 </script>
 
 

@@ -59,10 +59,29 @@
 
 <script>
   window.addEventListener('keydown', function (e){ //Listens for inputs from user. Specifically, keyDown events
-    console.log(e.keyCode); //Log the keyCode (ASCII) for each key entered into the console
-  });
-</script>
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //Constant containing the src file as well as the data-key for each corresponding audio element (asdfghjkl and so on)
+    
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //Constant containing the data-key for each corresponding key element (asdfghjkl and so on)
 
+    if(!audio) return; //stop the function from running
+    
+    audio.currentTime = 0; //Rewind to start to allow mashing of the corresponding key
+    
+    audio.play(); //play a sound on keydown
+
+    key.classList.add('playing'); //Adds the playing class from the styles.css file. This adds the yellow barrier on keydown
+
+    console.log(key);
+  });
+
+  function removeTransition(e) {
+    console.log(e);
+  }
+
+  const keys = document.querySelectorAll('.key');
+
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //Invokes the removeTransition function once a key transition ends
+</script>
 
 </body>
 </html>
